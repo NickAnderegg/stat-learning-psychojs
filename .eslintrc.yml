@@ -1,0 +1,22 @@
+env:
+  browser: true
+  es2020: true
+extends:
+  - standard
+  - "plugin:jsdoc/recommended"
+plugins:
+  - jsdoc
+parserOptions:
+  ecmaVersion: 11
+  sourceType: module
+rules:
+  # Disable the `comma-dangle` rule to allow lists to add/delete items without multiple
+  # lines being modified in the diff
+  comma-dangle: "off"
+
+  # Allow the same module to be listed in multiple `import` statements
+  no-duplicate-imports: "off"
+
+  # Warn when a variable is only assigned once, but don't change it
+  # to a const automatically
+  prefer-const: "warn"

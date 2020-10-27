@@ -13,7 +13,7 @@
 1. Clone this repository locally and change into the local directory:
 
     ```bash
-    ❯ git clone git@gitlab.pavlovia.org:NickAnderegg/stat-learning-psychojs.git stat-learning-psychojs
+    ❯ git clone git@gitlab.pavlovia.org:NickAnderegg/sentence-stat-learning-psychojs.git sentence-stat-learning-psychojs
     Cloning into 'stat-learning-psychojs'...
     remote: Enumerating objects: 688, done.
     remote: Counting objects: 100% (688/688), done.

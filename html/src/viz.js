@@ -31,8 +31,8 @@ function createTextStim (commonTextStimProperties, textStimProperties) {
 const stimDefinitions = {
   header: {
     name: 'visuals/header',
-    height: 0.15,
-    pos: [0, 0.9],
+    height: 0.1,
+    pos: [0, 0.8],
     alignVert: 'top',
     bold: true,
   },
@@ -104,7 +104,7 @@ export function prepareVisuals () {
   const commonTextStimProperties = {
     win: psychoJS.window,
     font: 'Arial',
-    units: 'height',
+    units: 'norm',
     text: '',
     wrapWidth: 1.7,
     ori: 0,

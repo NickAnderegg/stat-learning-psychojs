@@ -272,7 +272,7 @@ flowScheduler.add(trialLoopScheduler)
  * @param      {boolean}  isCompleted  Indicates if the participant has completed the experiment
  * @returns    {Scheduler.Event.QUIT}   Return the QUIT code
  */
-function quitPsychoJS (message, isCompleted) {
+export function quitPsychoJS (message, isCompleted) {
   // Save any orphaned data before quitting
   if (psychoJS.experiment.isEntryEmpty()) {
     psychoJS.experiment.nextEntry()
@@ -286,6 +286,10 @@ function quitPsychoJS (message, isCompleted) {
   //     'participant',
   //   ]
   // })
+
+  if (!isCompleted) {
+    psychoJS.experiment.save()
+  }
   psychoJS.window.close()
   psychoJS.quit({
     message: message,

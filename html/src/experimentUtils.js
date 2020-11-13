@@ -41,10 +41,16 @@ export var routineTimer
 
 export var restTimer
 
+export var sentenceTimer
+
+export var sentenceDurationCountdown
+
 export function initializeTimers () {
   globalClock = new util.Clock()
   routineTimer = new util.CountdownTimer()
   restTimer = new util.CountdownTimer()
+  sentenceDurationCountdown = new util.CountdownTimer()
+  sentenceTimer = new util.Clock()
 
   return Scheduler.Event.NEXT
 }

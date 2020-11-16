@@ -325,21 +325,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/parser@npm:^7.1.0, @babel/parser@npm:^7.10.4, @babel/parser@npm:^7.11.0, @babel/parser@npm:^7.11.1":
+"@babel/parser@npm:^7.1.0, @babel/parser@npm:^7.10.4, @babel/parser@npm:^7.11.0, @babel/parser@npm:^7.11.1, @babel/parser@npm:^7.9.4":
   version: 7.11.3
   resolution: "@babel/parser@npm:7.11.3"
   bin:
     parser: ./bin/babel-parser.js
   checksum: 39795285226f17c09492bbbfd3bfdde461bc3d0b935000e5fc66c3376567585959d0488d4e1447ebcb1528abe6fc9c1a1740b05cdb8078acee1242141169397e
-  languageName: node
-  linkType: hard
-
-"@babel/parser@npm:^7.9.4":
-  version: 7.10.4
-  resolution: "@babel/parser@npm:7.10.4"
-  bin:
-    parser: ./bin/babel-parser.js
-  checksum: d56ba930b09e67e6d2b61a2300a8afba31cdf9596ff921a1a4dfa5dfe73df1e171305e11b1bfc013acb258cb8871c74d196b0a241ce4ffe23f27186e9ddd0d9b
   languageName: node
   linkType: hard
 
@@ -5983,14 +5974,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.14, lodash@npm:^4.17.15":
-  version: 4.17.15
-  resolution: "lodash@npm:4.17.15"
-  checksum: aec3fbb7570aa67bda500b8299b1b1821d60646bede87f76a74dfcc7666ab3445267d734ec71424d70809d52ad67a1356fab5ab694a3faa1908d68e9d48f00f5
-  languageName: node
-  linkType: hard
-
-"lodash@npm:^4.17.19":
+"lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.19":
   version: 4.17.20
   resolution: "lodash@npm:4.17.20"
   checksum: c62101d2500c383b5f174a7e9e6fe8098149ddd6e9ccfa85f36d4789446195f5c4afd3cfba433026bcaf3da271256566b04a2bf2618e5a39f6e67f8c12030cb6

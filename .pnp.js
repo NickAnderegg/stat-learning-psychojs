@@ -429,14 +429,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@babel/parser", [
-        ["npm:7.10.4", {
-          "packageLocation": "./.yarn/cache/@babel-parser-npm-7.10.4-024d3bfebd-d56ba930b0.zip/node_modules/@babel/parser/",
-          "packageDependencies": [
-            ["@babel/parser", "npm:7.10.4"],
-            ["@babel/types", "npm:7.11.0"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:7.11.3", {
           "packageLocation": "./.yarn/cache/@babel-parser-npm-7.11.3-6f623fe67c-3979528522.zip/node_modules/@babel/parser/",
           "packageDependencies": [
@@ -2707,7 +2699,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/async-npm-2.6.3-2de4150248-5c30ec6f3d.zip/node_modules/async/",
           "packageDependencies": [
             ["async", "npm:2.6.3"],
-            ["lodash", "npm:4.17.15"]
+            ["lodash", "npm:4.17.20"]
           ],
           "linkType": "HARD",
         }]
@@ -3290,7 +3282,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/catharsis-npm-0.8.11-1dbe28ac7c-0015c6e260.zip/node_modules/catharsis/",
           "packageDependencies": [
             ["catharsis", "npm:0.8.11"],
-            ["lodash", "npm:4.17.15"]
+            ["lodash", "npm:4.17.20"]
           ],
           "linkType": "HARD",
         }]
@@ -4380,7 +4372,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["js-yaml", "npm:3.14.0"],
             ["json-stable-stringify-without-jsonify", "npm:1.0.1"],
             ["levn", "npm:0.4.1"],
-            ["lodash", "npm:4.17.15"],
+            ["lodash", "npm:4.17.20"],
             ["minimatch", "npm:3.0.4"],
             ["natural-compare", "npm:1.4.0"],
             ["optionator", "npm:0.9.1"],
@@ -4504,7 +4496,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["debug", "virtual:f97e87ce5c078d09fc4187e51128c0b4e6d65e6ffc1d9c4aa1addf154ab797eb9b519b8b4202754bea5d95fe88e15fd3426b3e05808bd29b6ed4b061efc87658#npm:4.2.0"],
             ["eslint", "npm:7.4.0"],
             ["jsdoctypeparser", "npm:7.0.0"],
-            ["lodash", "npm:4.17.15"],
+            ["lodash", "npm:4.17.20"],
             ["regextras", "npm:0.7.1"],
             ["semver", "npm:7.3.2"],
             ["spdx-expression-parse", "npm:3.0.1"]
@@ -6728,7 +6720,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/jsdoc-npm-3.6.4-f502a97e68-025ca6c506.zip/node_modules/jsdoc/",
           "packageDependencies": [
             ["jsdoc", "npm:3.6.4"],
-            ["@babel/parser", "npm:7.10.4"],
+            ["@babel/parser", "npm:7.11.3"],
             ["bluebird", "npm:3.7.2"],
             ["catharsis", "npm:0.8.11"],
             ["escape-string-regexp", "npm:2.0.0"],
@@ -7060,13 +7052,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["lodash", [
-        ["npm:4.17.15", {
-          "packageLocation": "./.yarn/cache/lodash-npm-4.17.15-566d9324f7-aec3fbb757.zip/node_modules/lodash/",
-          "packageDependencies": [
-            ["lodash", "npm:4.17.15"]
-          ],
-          "linkType": "HARD",
-        }],
         ["npm:4.17.20", {
           "packageLocation": "./.yarn/cache/lodash-npm-4.17.20-c0db62021c-c62101d250.zip/node_modules/lodash/",
           "packageDependencies": [
@@ -8947,7 +8932,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/requizzle-npm-0.2.3-b5b9f00017-8fbefe46b9.zip/node_modules/requizzle/",
           "packageDependencies": [
             ["requizzle", "npm:0.2.3"],
-            ["lodash", "npm:4.17.15"]
+            ["lodash", "npm:4.17.20"]
           ],
           "linkType": "HARD",
         }]
@@ -9898,7 +9883,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["table", "npm:5.4.6"],
             ["ajv", "npm:6.12.3"],
-            ["lodash", "npm:4.17.15"],
+            ["lodash", "npm:4.17.20"],
             ["slice-ansi", "npm:2.1.0"],
             ["string-width", "npm:3.1.0"]
           ],

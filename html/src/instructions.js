@@ -81,13 +81,16 @@ export function loopBegin (thisScheduler) {
 
   for (const thisInstruction of instructions) {
     thisScheduler.add(exp.importConditions(instructions))
-    // const trialsLoopScheduler = new Scheduler(psychoJS)
     thisScheduler.add(routineBegin)
     thisScheduler.add(routineFrame)
     thisScheduler.add(routineEnd)
 
-    // thisScheduler.add(endLoopIteration(thisTrial))
+    thisScheduler.add(endLoopIteration(thisInstruction))
   }
+
+  thisScheduler.add(checkComprehensionBegin)
+  thisScheduler.add(checkComprehensionFrame, thisScheduler)
+  thisScheduler.add(routineEnd)
 
   return Scheduler.Event.NEXT
 }
@@ -116,7 +119,6 @@ var instructionLength
 var continuationDelayMs
 var screenStartTime
 var screenContinueTime
-var t
 export function routineFrame () {
   let continueRoutine = true
 
@@ -133,11 +135,10 @@ export function routineFrame () {
 
     instructionLength = (instrBody.split(' ')).length
     continuationDelayMs = 250 * instructionLength
-    screenStartTime = exp.globalClock.getTime()
-    screenContinueTime = screenStartTime + (continuationDelayMs / 1000)
+    exp.waitForMS(continuationDelayMs)
   }
 
-  if (exp.keyboardHandler.status === PsychoJS.Status.NOT_STARTED && t > screenContinueTime) {
+  if (exp.keyboardHandler.status === PsychoJS.Status.NOT_STARTED && !exp.isWaiting()) {
     exp.keyboardHandler.status = PsychoJS.Status.STARTED
     instrContinue.setAutoDraw(true)
   }
@@ -184,6 +185,88 @@ export function routineFrame () {
   }
 }
 
+export function checkComprehensionBegin () {
+  // instrText.setText(instrValue.replace(/\\n/g, '\n')) /* eslint no-undef: 0 -- Variable is defined by exp.importConditions above */
+  instrText.setText([
+    'Do you understand the instructions?\n\n\n',
+    '  ‣ If not, press "b" to go back a reread them.\n\n',
+    '  ‣ If so, press space to begin the experiment.'
+  ].join('')) /* eslint no-undef: 0 -- Variable is defined by exp.importConditions above */
+
+  instrComponents = []
+  instrComponents.push(instrText)
+  instrComponents.push(instrContinue)
+  instrComponents.push(exp.keyboardHandler)
+
+  for (const thisComponent of instrComponents) {
+    console.log(thisComponent)
+    if ('status' in thisComponent) {
+      thisComponent.status = PsychoJS.Status.NOT_STARTED
+    }
+  }
+
+  return Scheduler.Event.NEXT
+}
+
+export function checkComprehensionFrame (thisScheduler) {
+  let continueRoutine = true
+
+  if (instrText.status === PsychoJS.Status.NOT_STARTED) {
+    instrText.setAutoDraw(true)
+    instrContinue.setAutoDraw(false)
+  }
+
+  if (exp.keyboardHandler.status === PsychoJS.Status.NOT_STARTED && !exp.isWaiting()) {
+    exp.keyboardHandler.status = PsychoJS.Status.STARTED
+    instrContinue.setAutoDraw(true)
+  }
+
+  if (exp.keyboardHandler.status === PsychoJS.Status.STARTED) {
+    let theseKeys = exp.keyboardHandler.getKeys({
+      keyList: ['space', 'b'],
+      waitRelease: false
+    })
+
+    // check for quit:
+    if (theseKeys.length > 0 && theseKeys[0].name === 'escape') {
+      psychoJS.experiment.experimentEnded = true
+    }
+
+    if (theseKeys.length > 0) { // at least one key was pressed
+      for (const keypress of theseKeys) {
+        if (keypress.name === 'b') {
+          thisScheduler.add(loopBegin, thisScheduler)
+        }
+        continueRoutine = false
+      }
+    }
+  }
+
+  if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({ keyList: ['escape'] }).length > 0) {
+    return psychoJS.quit('The [Escape] key was pressed. Goodbye!', false)
+  }
+
+  // check if the Routine should terminate
+  if (!continueRoutine) { // a component has requested a forced-end of Routine
+    return Scheduler.Event.NEXT
+  }
+
+  continueRoutine = false // reverts to True if at least one component still running
+  for (const thisComponent of instrComponents) {
+    if ('status' in thisComponent && thisComponent.status !== PsychoJS.Status.FINISHED) {
+      continueRoutine = true
+      break
+    }
+  }
+
+  // refresh the screen if continuing
+  if (continueRoutine) {
+    return Scheduler.Event.FLIP_REPEAT
+  } else {
+    return Scheduler.Event.NEXT
+  }
+}
+
 export function routineEnd () {
   // ------Ending Routine 'Instructions'-------
   for (const thisComponent of instrComponents) {
@@ -202,6 +285,16 @@ export function routineEnd () {
   // exp.routineTimer.reset()
 
   return Scheduler.Event.NEXT
+}
+
+function endLoopIteration (thisTrial) {
+  // ------Prepare for next entry------
+  return function () {
+    // if (typeof thisTrial === 'undefined' || !('isTrials' in thisTrial) || thisTrial.isTrials) {
+    //   psychoJS.experiment.nextEntry()
+    // }
+    return Scheduler.Event.NEXT
+  }
 }
 
 // export { instrInit, instrRoutineBegin, instrRoutineFrame, instrRoutineEnd, stimulus }

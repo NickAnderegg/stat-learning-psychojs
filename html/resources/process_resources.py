@@ -9,6 +9,10 @@ for resource in cwd.glob("**/*"):
         continue
     if resource.match("*.py"):
         continue
+    if resource.match("*.wav"):
+        continue
+    if resource.match("*.sh"):
+        continue
     if resource.is_dir():
         continue
 

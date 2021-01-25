@@ -27,7 +27,7 @@ export function prepareStimuli () {
   volumeTest = new sound.Sound({
     win: psychoJS.window,
     name: 'volumetest',
-    value: 'volumetest.wav',
+    value: 'volumetest.mp3',
     autolog: true,
   })
 

@@ -89,7 +89,7 @@ export function loopBegin (thisScheduler) {
   volumeTestAudio = new sound.Sound({
     name: 'volumeTestAudio',
     win: psychoJS.window,
-    value: 'volumetest.wav',
+    value: 'volumetest.mp3',
     loops: 2
   })
 

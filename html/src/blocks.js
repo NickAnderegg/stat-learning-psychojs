@@ -34,6 +34,7 @@ function loadSentences () {
       if (val[i] === undefined) {
         sentenceObject[i] = ''
       } else {
+        val[i] = val[i].replace('.wav', '.mp3')
         sentenceObject[i] = val[i]
 
         if (!wordList.has(val[i])) {
@@ -44,7 +45,7 @@ function loadSentences () {
           })
         }
 
-        fullSentence.push(val[i].replace('.wav', ''))
+        fullSentence.push(val[i].replace('.mp3', ''))
 
         const lastOnset = onsets[onsets.length - 1]
         const currOnset = lastOnset + wordList[val[i]].getDuration()
@@ -55,7 +56,7 @@ function loadSentences () {
     sentenceObject.audio = new sound.Sound({
       win: psychoJS.window,
       name: 'sentence' + val.sentenceNum,
-      value: 'sounds/sentences/sentence' + val.sentenceNum + '.wav',
+      value: 'sounds/sentences/sentence' + val.sentenceNum + '.mp3',
     })
 
     for (var j = 0; j < onsets.length; j++) {

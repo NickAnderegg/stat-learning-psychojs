@@ -32,7 +32,7 @@ import * as sound from './lib/sound-2020.1.js'
 /**
  * Import experiment-specific files
  */
-// import * as instr from './src/instructions.js'
+import * as instr from './src/instructions.js'
 import * as exp from './src/experimentUtils.js'
 import * as trials from './src/trials.js'
 // import * as viz from './src/viz.js'
@@ -236,10 +236,10 @@ flowScheduler.add(exp.initializeTimers)
  *
  * @type       {Scheduler}
  */
-// const instrLoopScheduler = new Scheduler(psychoJS)
-// flowScheduler.add(instr.init)
-// flowScheduler.add(instr.loopBegin, instrLoopScheduler)
-// flowScheduler.add(instrLoopScheduler)
+const instrLoopScheduler = new Scheduler(psychoJS)
+flowScheduler.add(instr.init)
+flowScheduler.add(instr.loopBegin, instrLoopScheduler)
+flowScheduler.add(instrLoopScheduler)
 
 /**
  * Create a scheduler to hold the trial steps.

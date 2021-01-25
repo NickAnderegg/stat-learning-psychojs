@@ -33,6 +33,7 @@ import * as sound from './lib/sound-2020.1.js'
  * Import experiment-specific files
  */
 import * as instr from './src/instructions.js'
+import * as audioTest from './src/audioTest.js'
 import * as exp from './src/experimentUtils.js'
 import * as trials from './src/trials.js'
 // import * as viz from './src/viz.js'
@@ -240,6 +241,11 @@ const instrLoopScheduler = new Scheduler(psychoJS)
 flowScheduler.add(instr.init)
 flowScheduler.add(instr.loopBegin, instrLoopScheduler)
 flowScheduler.add(instrLoopScheduler)
+
+const audioTestScheduler = new Scheduler(psychoJS)
+flowScheduler.add(audioTest.init)
+flowScheduler.add(audioTest.loopBegin, audioTestScheduler)
+flowScheduler.add(audioTestScheduler)
 
 /**
  * Create a scheduler to hold the trial steps.

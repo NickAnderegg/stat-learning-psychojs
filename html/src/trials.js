@@ -112,6 +112,8 @@ function trialRoutineBegin () {
   return Scheduler.Event.NEXT
 }
 
+let nextPlay
+let totalPlays
 function trialRoutineIntroFrames () {
   t = exp.globalClock.getTime()
   // frameN = frameN + 1
@@ -121,14 +123,24 @@ function trialRoutineIntroFrames () {
     // viz.header.frameNStart = frameN
     viz.header.setAutoDraw(true)
     viz.targetWordText.setAutoDraw(true)
-    blocks.wordList[monitoredWord + '.wav'].play(2)
+    blocks.wordList[monitoredWord + '.wav'].play()
+
+    nextPlay = t + blocks.wordList[monitoredWord + '.wav'].getDuration() + 0.25
+    totalPlays = 1
   }
 
-  if (t > 2.5) {
+  if (t >= nextPlay && totalPlays < 3) {
+    blocks.wordList[monitoredWord + '.wav'].play()
+
+    nextPlay = t + blocks.wordList[monitoredWord + '.wav'].getDuration() + 0.25
+    totalPlays += 1
+  }
+
+  if (totalPlays >= 3 && t > nextPlay) {
     viz.targetWordText.setAutoDraw(false)
   }
 
-  if (exp.routineTimer.getTime() > 0) {
+  if (exp.routineTimer.getTime() > 0 || totalPlays < 3) {
     return Scheduler.Event.FLIP_REPEAT
   }
 

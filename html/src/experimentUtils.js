@@ -45,12 +45,17 @@ export var sentenceTimer
 
 export var sentenceDurationCountdown
 
+export var waitTimer
+
 export function initializeTimers () {
   globalClock = new util.Clock()
   routineTimer = new util.CountdownTimer()
   restTimer = new util.CountdownTimer()
   sentenceDurationCountdown = new util.CountdownTimer()
   sentenceTimer = new util.Clock()
+
+  waitTimer = new util.CountdownTimer()
+  waitTimer.reset(0)
 
   return Scheduler.Event.NEXT
 }
@@ -83,6 +88,44 @@ export function importConditions (loop) {
     psychoJS.importAttributes(loop.getCurrentTrial())
 
     return Scheduler.Event.NEXT
+  }
+}
+
+export var namedWaits = new Map()
+export function waitForMS (milliseconds) {
+  const waitTime = (milliseconds / 1000)
+  waitTimer.reset(waitTime)
+  return Scheduler.Event.FLIP_REPEAT
+}
+
+export function waitForNamed (milliseconds, waitName) {
+  if (namedWaits.has(waitName)) {
+    return false
+  }
+
+  const waitTime = milliseconds / 1000
+  namedWaits[waitName] = new util.CountdownTimer(waitTime)
+  return namedWaits[waitName]
+}
+
+export function isWaiting () {
+  if (waitTimer.getTime() > 0) {
+    return true
+  } else {
+    return false
+  }
+}
+
+export function isNamedWaiting (waitName) {
+  if (!namedWaits.has(waitName)) {
+    return false
+  }
+
+  if (namedWaits[waitName].getTime() > 0) {
+    return true
+  } else {
+    namedWaits.delete(waitName)
+    return false
   }
 }
 

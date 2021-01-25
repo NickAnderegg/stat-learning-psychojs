@@ -3,20 +3,20 @@ import * as core from '../lib/core-2020.1.js'
 import { TrialHandler } from '../lib/data-2020.1.js'
 import { Scheduler } from '../lib/util-2020.1.js'
 import * as util from '../lib/util-2020.1.js'
-import * as visual from '../lib/visual-2020.1.js'
-import * as sound from '../lib/sound-2020.1.js'
+// import * as visual from '../lib/visual-2020.1.js'
+// import * as sound from '../lib/sound-2020.1.js'
 
 import { psychoJS, sessionInfo, viz, quitPsychoJS } from '../index.js'
 import * as exp from './experimentUtils.js'
 // import * as viz from './viz.js'
 import * as blocks from './blocks.js'
 
+/* global monitoredWord, blockOrder, blockName */
+
 var t
 var frameN
 var trials
-var continueRoutine
-var serverResources
-// var currentLoop
+// var continueRoutine
 var blockHandler
 export function trialLoopBegin (thisScheduler) {
   blockHandler = new TrialHandler({
@@ -33,7 +33,7 @@ export function trialLoopBegin (thisScheduler) {
   exp.addSessionDataObject(exp.sessionData)
 
   for (const thisBlock of blockHandler) {
-    console.log(thisBlock)
+    // console.log(thisBlock)
     thisScheduler.add(exp.importConditions(blockHandler))
 
     thisScheduler.add(trialRoutineBegin)
@@ -112,35 +112,30 @@ function trialRoutineBegin () {
   return Scheduler.Event.NEXT
 }
 
-let nextPlay
-let totalPlays
 function trialRoutineIntroFrames () {
+  if (exp.isWaiting()) {
+    return Scheduler.Event.FLIP_REPEAT
+  }
+
   t = exp.globalClock.getTime()
-  // frameN = frameN + 1
 
   if (viz.header.status === PsychoJS.Status.NOT_STARTED && t >= 0.1) {
-    // viz.header.tStart = t
-    // viz.header.frameNStart = frameN
     viz.header.setAutoDraw(true)
     viz.targetWordText.setAutoDraw(true)
-    blocks.wordList[monitoredWord + '.wav'].play()
+    blocks.wordList[monitoredWord + '.mp3'].play()
 
-    nextPlay = t + blocks.wordList[monitoredWord + '.wav'].getDuration() + 0.25
-    totalPlays = 1
+    exp.waitForMS(1000)
+    return Scheduler.Event.FLIP_REPEAT
   }
 
-  if (t >= nextPlay && totalPlays < 3) {
-    blocks.wordList[monitoredWord + '.wav'].play()
-
-    nextPlay = t + blocks.wordList[monitoredWord + '.wav'].getDuration() + 0.25
-    totalPlays += 1
+  if (exp.isWaiting() || exp.routineTimer.getTime() > 0) {
+    return Scheduler.Event.FLIP_REPEAT
   }
 
-  if (totalPlays >= 3 && t > nextPlay) {
+  if (viz.targetWordText.status !== PsychoJS.Status.FINISHED) {
+    viz.targetWordText.status = PsychoJS.Status.FINISHED
     viz.targetWordText.setAutoDraw(false)
-  }
-
-  if (exp.routineTimer.getTime() > 0 || totalPlays < 3) {
+    exp.waitForMS(500)
     return Scheduler.Event.FLIP_REPEAT
   }
 
@@ -262,7 +257,7 @@ function trialRoutineEachFrame () {
     currentSentence.audio.stop()
 
     exp.addSessionDataObject(respEntry)
-    console.log(respEntry)
+    // console.log(respEntry)
 
     const processedKeypresses = recordKeypresses(currentSentence, allSentenceResponses)
 

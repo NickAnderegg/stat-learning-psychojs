@@ -464,7 +464,7 @@ function trialRoutineEnd () {
 
 export function trialLoopEnd () {
   psychoJS.experiment.nextEntry()
-  psychoJS.experiment.removeLoop(trials)
+  // psychoJS.experiment.removeLoop(trials)
 
   return Scheduler.Event.NEXT
 }

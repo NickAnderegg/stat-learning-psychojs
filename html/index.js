@@ -40,6 +40,7 @@ import * as trials from './src/trials.js'
 import { prepareVisuals } from './src/viz.js'
 import * as audioStims from './src/audioStims.js'
 import * as blocks from './src/blocks.js'
+import * as comprehension from './src/comprehension.js'
 import { resourcesList } from './src/resourcesList.js'
 
 /**
@@ -63,7 +64,7 @@ export const psychoJS = new PsychoJS({
  * Open an experiment window.
  */
 psychoJS.openWindow({
-  fullscr: true,
+  // fullscr: true,
   color: new util.Color('white'),
   units: 'height',
   waitBlanking: true
@@ -237,15 +238,15 @@ flowScheduler.add(exp.initializeTimers)
  *
  * @type       {Scheduler}
  */
-const instrLoopScheduler = new Scheduler(psychoJS)
-flowScheduler.add(instr.init)
-flowScheduler.add(instr.loopBegin, instrLoopScheduler)
-flowScheduler.add(instrLoopScheduler)
+// const instrLoopScheduler = new Scheduler(psychoJS)
+// flowScheduler.add(instr.init)
+// flowScheduler.add(instr.loopBegin, instrLoopScheduler)
+// flowScheduler.add(instrLoopScheduler)
 
-const audioTestScheduler = new Scheduler(psychoJS)
-flowScheduler.add(audioTest.init)
-flowScheduler.add(audioTest.loopBegin, audioTestScheduler)
-flowScheduler.add(audioTestScheduler)
+// const audioTestScheduler = new Scheduler(psychoJS)
+// flowScheduler.add(audioTest.init)
+// flowScheduler.add(audioTest.loopBegin, audioTestScheduler)
+// flowScheduler.add(audioTestScheduler)
 
 /**
  * Create a scheduler to hold the trial steps.
@@ -262,14 +263,21 @@ flowScheduler.add(audioTestScheduler)
  *
  * @type       {Scheduler}
  */
-const trialLoopScheduler = new Scheduler(psychoJS)
-// flowScheduler.add(viz.prepareVisuals)
+// const trialLoopScheduler = new Scheduler(psychoJS)
+// // flowScheduler.add(viz.prepareVisuals)
 flowScheduler.add(audioStims.prepareStimuli)
 
 flowScheduler.add(blocks.loadStimData)
-flowScheduler.add(trials.trialLoopBegin, trialLoopScheduler)
-flowScheduler.add(trialLoopScheduler)
+// flowScheduler.add(trials.trialLoopBegin, trialLoopScheduler)
+// flowScheduler.add(trialLoopScheduler)
 // flowScheduler.add(trials.trialLoopEnd)
+
+const comprehensionLoopScheduler = new Scheduler(psychoJS)
+flowScheduler.add(comprehension.loadTrials)
+// flowScheduler.add(console.log, 'Testing the flow scheduler...')
+flowScheduler.add(comprehension.comprehensionLoopBegin, comprehensionLoopScheduler)
+flowScheduler.add(comprehensionLoopScheduler)
+flowScheduler.add(comprehension.comprehensionLoopEnd)
 
 /**
  * Terminate the experiment loop.

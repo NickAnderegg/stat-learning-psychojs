@@ -106,7 +106,7 @@ export function loadStimData () {
   return Scheduler.Event.NEXT
 }
 
-function loadCsvFile (whichResource, options) {
+export function loadCsvFile (whichResource, options) {
   const fileRaw = new Uint8Array(psychoJS.serverManager.getResource(whichResource))
   const fileDecoded = (new TextDecoder()).decode(fileRaw)
 
@@ -118,6 +118,14 @@ function loadCsvFile (whichResource, options) {
     parsedSheet.Sheets.Sheet1,
     options
   )
+
+  // for (var i = 0; i < parsedJSON.length; i++) {
+  //   for (const [key, val] of Object.entries(parsedJSON[i])) {
+  //     if (typeof val === 'string') {
+  //       parsedJSON[i][key] = val.trim()
+  //     }
+  //   }
+  // }
 
   return parsedJSON
 }

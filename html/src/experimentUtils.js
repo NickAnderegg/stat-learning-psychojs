@@ -45,6 +45,8 @@ export var sentenceTimer
 
 export var sentenceDurationCountdown
 
+export var wordDurationCountdown
+
 export var waitTimer
 
 export function initializeTimers () {
@@ -52,6 +54,7 @@ export function initializeTimers () {
   routineTimer = new util.CountdownTimer()
   restTimer = new util.CountdownTimer()
   sentenceDurationCountdown = new util.CountdownTimer()
+  wordDurationCountdown = new util.CountdownTimer()
   sentenceTimer = new util.Clock()
 
   waitTimer = new util.CountdownTimer()

@@ -42,8 +42,11 @@ import * as audioStims from './src/audioStims.js'
 import * as blocks from './src/blocks.js'
 import * as comprehension from './src/comprehension.js'
 import { resourcesList } from './src/resourcesList.js'
+import * as demographics from './src/demographics.js'
+
 import * as mainInstructions from './src/instructionsText.js'
 import * as comprehensionInstructions from './src/comprehensionInstructionText.js'
+import * as demographicInstructions from './src/demographicInstructionText.js'
 
 /**
  * The version of PsychoJS being used. This should always match the version
@@ -302,6 +305,20 @@ if (runParts.indexOf('comprehension') > -1) {
   flowScheduler.add(comprehension.comprehensionLoopBegin, comprehensionLoopScheduler)
   flowScheduler.add(comprehensionLoopScheduler)
   flowScheduler.add(comprehension.comprehensionLoopEnd)
+}
+
+if (runParts.indexOf('demographics') > -1) {
+  const demographicInstrScheduler = new Scheduler(psychoJS)
+  flowScheduler.add(instr.init, demographicInstructions.generateInstructions)
+  flowScheduler.add(instr.loopBegin, demographicInstrScheduler)
+  flowScheduler.add(demographicInstrScheduler)
+
+  const demographicsLoopScheduler = new Scheduler(psychoJS)
+  flowScheduler.add(demographics.loadQuestions)
+  flowScheduler.add(demographics.prepareQuestionnaireVisuals)
+  flowScheduler.add(demographics.demographicLoopBegin, demographicsLoopScheduler)
+  flowScheduler.add(demographicsLoopScheduler)
+  flowScheduler.add(demographics.demographicLoopEnd)
 }
 
 /**

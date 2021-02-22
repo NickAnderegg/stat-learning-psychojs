@@ -4,6 +4,10 @@ export const resourcesList = [
     path: 'resources/demographics.yaml',
   },
   {
+    name: 'demographics.json',
+    path: 'resources/demographics.json',
+  },
+  {
     name: 'sentences.csv',
     path: 'resources/sentences.csv',
   },

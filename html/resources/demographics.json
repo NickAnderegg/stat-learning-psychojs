@@ -1,0 +1,185 @@
+[
+    {
+        "question": "What type of headphones did you use for the task?",
+        "options": [
+            "In-ear",
+            "Over-ear",
+            "On-ear",
+            "None"
+        ]
+    },
+    {
+        "question": "Which ear(s) did you use headphones for?",
+        "options": [
+            "Left ear only",
+            "Right ear only",
+            "Both ears",
+            "None"
+        ]
+    },
+    {
+        "question": "What type of computer and mouse are you using?",
+        "options": [
+            "Laptop with physical mouse",
+            "Laptop with trackpad",
+            "Desktop with physical mouse",
+            "Desktop with trackpad"
+        ]
+    },
+    {
+        "question": "How much time do you spend on practicing a musical instrument?",
+        "options": [
+            ">2h/week",
+            "<2h/week",
+            "I don't play a musical instrument"
+        ]
+    },
+    {
+        "question": "Which hand did you use to respond with during the task you just completed?",
+        "options": [
+            "Left",
+            "Right",
+            "Both"
+        ]
+    },
+    {
+        "question": "Which hand do you write with?",
+        "options": [
+            "Always Left",
+            "Usually Left",
+            "Both Equally",
+            "Usually Right",
+            "Always Right"
+        ]
+    },
+    {
+        "question": "Which hand do you throw with?",
+        "options": [
+            "Always Left",
+            "Usually Left",
+            "Both Equally",
+            "Usually Right",
+            "Always Right"
+        ]
+    },
+    {
+        "question": "Which hand do you brush your teeth with?",
+        "options": [
+            "Always Left",
+            "Usually Left",
+            "Both Equally",
+            "Usually Right",
+            "Always Right"
+        ]
+    },
+    {
+        "question": "Which hand do you use to eat with a spoon?",
+        "options": [
+            "Always Left",
+            "Usually Left",
+            "Both Equally",
+            "Usually Right",
+            "Always Right"
+        ]
+    },
+    {
+        "question": "What is your age?",
+        "dialog": true
+    },
+    {
+        "question": "What is your gender?",
+        "options": [
+            "Female",
+            "Male",
+            "Other / Not Specified"
+        ]
+    },
+    {
+        "question": "What is your race?",
+        "options": [
+            "American Indian/Alaska Native",
+            "Asian",
+            "Native Hawaiian or Other Pacific Islander",
+            "Black or African American",
+            "White",
+            "More than One Race",
+            "Unknown/Not reported"
+        ]
+    },
+    {
+        "question": "What is your ethnicity?",
+        "options": [
+            "Hispanic or Latino",
+            "Not Hispanic or Latino",
+            "Unknown/Not reported"
+        ]
+    },
+    {
+        "question": "Are you a fluent/native English speaker?",
+        "options": [
+            "Yes",
+            "No"
+        ]
+    },
+    {
+        "question": "Did you learn English before the age 5?",
+        "options": [
+            "Yes",
+            "No"
+        ]
+    },
+    {
+        "question": "Are your parents/guardians native speakers of English?",
+        "options": [
+            "Yes, at least one",
+            "No, none were native speakers of English"
+        ]
+    },
+    {
+        "question": "What language(s) did your parents/guardians speak to you when you were growing up?",
+        "dialog": true
+    },
+    {
+        "question": "What language(s) did your classmates/teachers/friends speak when you were growing up?",
+        "dialog": true
+    },
+    {
+        "question": "What language(s), if any, do you speak fluently besides English?",
+        "dialog": true
+    },
+    {
+        "question": "Do you have a history of a speech, language, or hearing impairment?",
+        "options": [
+            "Yes",
+            "No"
+        ]
+    },
+    {
+        "question": "Have you ever been diagnosed with a language-related learning disability, for example dyslexia or Specific Language Impairment (SLI)?",
+        "options": [
+            "Yes",
+            "Yes, and it is Specific Language Impairment (SLI)",
+            "No"
+        ]
+    },
+    {
+        "question": "What is the highest grade or level of school you have completed or the highest degree you have received?",
+        "options": [
+            "5th Grade or below",
+            "6th Grade",
+            "7th Grade",
+            "8th Grade",
+            "9th Grade",
+            "10th Grade",
+            "11th Grade",
+            "12th Grade No Diploma",
+            "High School Graduate",
+            "GED or equivalent",
+            "Some College, No Degree",
+            "Associate's Degree",
+            "Bachelor's Degree",
+            "Master's Degree",
+            "Doctoral Degree (e.g. - PhD, MD, JD)"
+        ]
+    }
+]

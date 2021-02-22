@@ -88,18 +88,6 @@ const stimDefinitions = {
   }
 }
 
-// const textStims = [
-//   'header',
-//   'centeredText',
-//   'bodyText',
-//   'centeredBodyText',
-//   'continuationText',
-//   'targetWordText',
-//   'restText',
-//   'group1Text',
-//   'group2Text',
-// ]
-
 export function prepareVisuals () {
   const commonTextStimProperties = {
     win: psychoJS.window,

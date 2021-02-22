@@ -1,6 +1,6 @@
-import { Scheduler } from '../lib/util-2020.1.js'
-import * as util from '../lib/util-2020.1.js'
-import * as visual from '../lib/visual-2020.1.js'
+import { Scheduler } from '../lib/util-2021.1.0.js'
+import * as util from '../lib/util-2021.1.0.js'
+import * as visual from '../lib/visual-2021.1.0.js'
 
 import { psychoJS } from '../index.js'
 import * as exp from './experimentUtils.js'

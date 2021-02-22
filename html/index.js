@@ -21,13 +21,13 @@
 /**
  * Import standard PsychoJS library
  */
-import { PsychoJS } from './lib/core-2020.1.js'
-import * as core from './lib/core-2020.1.js'
-import { TrialHandler } from './lib/data-2020.1.js'
-import { Scheduler } from './lib/util-2020.1.js'
-import * as util from './lib/util-2020.1.js'
-import * as visual from './lib/visual-2020.1.js'
-import * as sound from './lib/sound-2020.1.js'
+import { PsychoJS } from './lib/core-2021.1.0.js'
+import * as core from './lib/core-2021.1.0.js'
+import { TrialHandler } from './lib/data-2021.1.0.js'
+import { Scheduler } from './lib/util-2021.1.0.js'
+import * as util from './lib/util-2021.1.0.js'
+import * as visual from './lib/visual-2021.1.0.js'
+import * as sound from './lib/sound-2021.1.0.js'
 
 /**
  * Import experiment-specific files
@@ -49,7 +49,7 @@ import { resourcesList } from './src/resourcesList.js'
  *
  * @type       {string}
  */
-const psychoJSVersion = '2020.1'
+const psychoJSVersion = '2021.1.0'
 
 /**
  * Base PsychoJS object

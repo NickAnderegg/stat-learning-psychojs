@@ -18,10 +18,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { PsychoJS } from '../lib/core-2020.1.js'
-import * as core from '../lib/core-2020.1.js'
-import * as util from '../lib/util-2020.1.js'
-import { Scheduler } from '../lib/util-2020.1.js'
+import { PsychoJS } from '../lib/core-2021.1.0.js'
+import * as core from '../lib/core-2021.1.0.js'
+import * as util from '../lib/util-2021.1.0.js'
+import { Scheduler } from '../lib/util-2021.1.0.js'
 
 import { psychoJS } from '../index.js'
 

@@ -1,10 +1,10 @@
-import { PsychoJS } from '../lib/core-2020.1.js'
-import * as core from '../lib/core-2020.1.js'
-import { TrialHandler } from '../lib/data-2020.1.js'
-import { Scheduler } from '../lib/util-2020.1.js'
-import * as util from '../lib/util-2020.1.js'
-import * as visual from '../lib/visual-2020.1.js'
-import * as sound from '../lib/sound-2020.1.js'
+import { PsychoJS } from '../lib/core-2021.1.0.js'
+import * as core from '../lib/core-2021.1.0.js'
+import { TrialHandler } from '../lib/data-2021.1.0.js'
+import { Scheduler } from '../lib/util-2021.1.0.js'
+import * as util from '../lib/util-2021.1.0.js'
+import * as visual from '../lib/visual-2021.1.0.js'
+import * as sound from '../lib/sound-2021.1.0.js'
 
 import { psychoJS, sessionInfo } from '../index.js'
 import * as exp from './experimentUtils.js'
@@ -118,14 +118,6 @@ export function loadCsvFile (whichResource, options) {
     parsedSheet.Sheets.Sheet1,
     options
   )
-
-  // for (var i = 0; i < parsedJSON.length; i++) {
-  //   for (const [key, val] of Object.entries(parsedJSON[i])) {
-  //     if (typeof val === 'string') {
-  //       parsedJSON[i][key] = val.trim()
-  //     }
-  //   }
-  // }
 
   return parsedJSON
 }

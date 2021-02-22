@@ -42,6 +42,8 @@ import * as audioStims from './src/audioStims.js'
 import * as blocks from './src/blocks.js'
 import * as comprehension from './src/comprehension.js'
 import { resourcesList } from './src/resourcesList.js'
+import * as mainInstructions from './src/instructionsText.js'
+import * as comprehensionInstructions from './src/comprehensionInstructionText.js'
 
 /**
  * The version of PsychoJS being used. This should always match the version
@@ -50,6 +52,14 @@ import { resourcesList } from './src/resourcesList.js'
  * @type       {string}
  */
 const psychoJSVersion = '2021.1.0'
+
+const runParts = [
+  // 'instructions',
+  // 'audioTest',
+  // 'task',
+  // 'comprehension',
+  'demographics',
+]
 
 /**
  * Base PsychoJS object
@@ -238,15 +248,20 @@ flowScheduler.add(exp.initializeTimers)
  *
  * @type       {Scheduler}
  */
-// const instrLoopScheduler = new Scheduler(psychoJS)
-// flowScheduler.add(instr.init)
-// flowScheduler.add(instr.loopBegin, instrLoopScheduler)
-// flowScheduler.add(instrLoopScheduler)
 
-// const audioTestScheduler = new Scheduler(psychoJS)
-// flowScheduler.add(audioTest.init)
-// flowScheduler.add(audioTest.loopBegin, audioTestScheduler)
-// flowScheduler.add(audioTestScheduler)
+if (runParts.indexOf('instructions') > -1) {
+  const instrLoopScheduler = new Scheduler(psychoJS)
+  flowScheduler.add(instr.init)
+  flowScheduler.add(instr.loopBegin, instrLoopScheduler)
+  flowScheduler.add(instrLoopScheduler)
+}
+
+if (runParts.indexOf('audioTest') > -1) {
+  const audioTestScheduler = new Scheduler(psychoJS)
+  flowScheduler.add(audioTest.init)
+  flowScheduler.add(audioTest.loopBegin, audioTestScheduler)
+  flowScheduler.add(audioTestScheduler)
+}
 
 /**
  * Create a scheduler to hold the trial steps.
@@ -263,21 +278,31 @@ flowScheduler.add(exp.initializeTimers)
  *
  * @type       {Scheduler}
  */
-// const trialLoopScheduler = new Scheduler(psychoJS)
-// // flowScheduler.add(viz.prepareVisuals)
+const trialLoopScheduler = new Scheduler(psychoJS)
+// flowScheduler.add(viz.prepareVisuals)
 flowScheduler.add(audioStims.prepareStimuli)
 
 flowScheduler.add(blocks.loadStimData)
-// flowScheduler.add(trials.trialLoopBegin, trialLoopScheduler)
-// flowScheduler.add(trialLoopScheduler)
-// flowScheduler.add(trials.trialLoopEnd)
 
-const comprehensionLoopScheduler = new Scheduler(psychoJS)
-flowScheduler.add(comprehension.loadTrials)
-// flowScheduler.add(console.log, 'Testing the flow scheduler...')
-flowScheduler.add(comprehension.comprehensionLoopBegin, comprehensionLoopScheduler)
-flowScheduler.add(comprehensionLoopScheduler)
-flowScheduler.add(comprehension.comprehensionLoopEnd)
+if (runParts.indexOf('task') > -1) {
+  flowScheduler.add(trials.trialLoopBegin, trialLoopScheduler)
+  flowScheduler.add(trialLoopScheduler)
+  flowScheduler.add(trials.trialLoopEnd)
+}
+
+if (runParts.indexOf('comprehension') > -1) {
+  const compInstrScheduler = new Scheduler(psychoJS)
+  flowScheduler.add(instr.init, comprehensionInstructions.generateInstructions)
+  flowScheduler.add(instr.loopBegin, compInstrScheduler)
+  flowScheduler.add(compInstrScheduler)
+
+  const comprehensionLoopScheduler = new Scheduler(psychoJS)
+  flowScheduler.add(comprehension.loadTrials)
+  // flowScheduler.add(console.log, 'Testing the flow scheduler...')
+  flowScheduler.add(comprehension.comprehensionLoopBegin, comprehensionLoopScheduler)
+  flowScheduler.add(comprehensionLoopScheduler)
+  flowScheduler.add(comprehension.comprehensionLoopEnd)
+}
 
 /**
  * Terminate the experiment loop.

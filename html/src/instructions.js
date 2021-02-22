@@ -9,15 +9,16 @@ import * as sound from '../lib/sound-2021.1.0.js'
 import { psychoJS } from '../index.js'
 import * as exp from './experimentUtils.js'
 
-import { generateInstructions } from './instructionsText.js'
+// import { generateInstructions } from './instructionsText.js'
 
 // const instrScheduler = new Scheduler
 
 let instrText
 let instrContinue
+let generateInstructions
 // export var stimulus
 // var respKey
-export function init () {
+export function init (instrFunction) {
   instrText = new visual.TextStim({
     win: psychoJS.window,
     name: 'instrText',
@@ -43,6 +44,8 @@ export function init () {
     height: 0.05,
     color: new util.Color('black')
   })
+
+  generateInstructions = instrFunction
 
   // resp = new core.BuilderKeyResponse(psychoJS)
 

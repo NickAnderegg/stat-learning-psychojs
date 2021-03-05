@@ -135,6 +135,7 @@ function trialRoutineIntroFrames () {
   if (viz.targetWordText.status !== PsychoJS.Status.FINISHED) {
     viz.targetWordText.status = PsychoJS.Status.FINISHED
     viz.targetWordText.setAutoDraw(false)
+    viz.header.setAutoDraw(false)
     exp.waitForMS(500)
     return Scheduler.Event.FLIP_REPEAT
   }
@@ -216,7 +217,7 @@ function trialRoutineEachFrame () {
   if (viz.header.status === PsychoJS.Status.NOT_STARTED && t >= 0.1) {
     viz.header.tStart = t
     viz.header.frameNStart = frameN
-    viz.header.setAutoDraw(true)
+    viz.header.setAutoDraw(false)
     viz.targetWordText.setAutoDraw(true)
   }
 

@@ -102,6 +102,10 @@ export function loopBegin (thisScheduler) {
     thisScheduler.add(routineEnd)
   }
 
+  thisScheduler.add(checkReadyBegin)
+  thisScheduler.add(checkReadyFrame, thisScheduler)
+  thisScheduler.add(routineEnd)
+
   return Scheduler.Event.NEXT
 }
 
@@ -202,6 +206,86 @@ export function routineFrame () {
     return Scheduler.Event.FLIP_REPEAT
   } else {
     volumeTestAudio.stop()
+    return Scheduler.Event.NEXT
+  }
+}
+
+export function checkReadyBegin () {
+  // instrText.setText(instrValue.replace(/\\n/g, '\n')) /* eslint no-undef: 0 -- Variable is defined by exp.importConditions above */
+  instrText.setText([
+    'Are you ready to begin the experiment?\n\n\n',
+    'If so, press space to begin the experiment.'
+  ].join('')) /* eslint no-undef: 0 -- Variable is defined by exp.importConditions above */
+
+  instrComponents = []
+  instrComponents.push(instrText)
+  instrComponents.push(instrContinue)
+  instrComponents.push(exp.keyboardHandler)
+
+  for (const thisComponent of instrComponents) {
+    console.log(thisComponent)
+    if ('status' in thisComponent) {
+      thisComponent.status = PsychoJS.Status.NOT_STARTED
+    }
+  }
+
+  return Scheduler.Event.NEXT
+}
+
+export function checkReadyFrame (thisScheduler) {
+  let continueRoutine = true
+
+  if (instrText.status === PsychoJS.Status.NOT_STARTED) {
+    instrText.setAutoDraw(true)
+    instrContinue.setAutoDraw(false)
+  }
+
+  if (exp.keyboardHandler.status === PsychoJS.Status.NOT_STARTED && !exp.isWaiting()) {
+    exp.keyboardHandler.status = PsychoJS.Status.STARTED
+    instrContinue.setAutoDraw(false)
+  }
+
+  if (exp.keyboardHandler.status === PsychoJS.Status.STARTED) {
+    let theseKeys = exp.keyboardHandler.getKeys({
+      keyList: ['space'],
+      waitRelease: false
+    })
+
+    // check for quit:
+    if (theseKeys.length > 0 && theseKeys[0].name === 'escape') {
+      psychoJS.experiment.experimentEnded = true
+    }
+
+    if (theseKeys.length > 0) { // at least one key was pressed
+      for (const keypress of theseKeys) {
+        if (keypress.name === 'space') {
+          continueRoutine = false
+        }
+      }
+    }
+  }
+
+  if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({ keyList: ['escape'] }).length > 0) {
+    return psychoJS.quit('The [Escape] key was pressed. Goodbye!', false)
+  }
+
+  // check if the Routine should terminate
+  if (!continueRoutine) { // a component has requested a forced-end of Routine
+    return Scheduler.Event.NEXT
+  }
+
+  continueRoutine = false // reverts to True if at least one component still running
+  for (const thisComponent of instrComponents) {
+    if ('status' in thisComponent && thisComponent.status !== PsychoJS.Status.FINISHED) {
+      continueRoutine = true
+      break
+    }
+  }
+
+  // refresh the screen if continuing
+  if (continueRoutine) {
+    return Scheduler.Event.FLIP_REPEAT
+  } else {
     return Scheduler.Event.NEXT
   }
 }

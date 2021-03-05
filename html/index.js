@@ -254,7 +254,7 @@ flowScheduler.add(exp.initializeTimers)
 
 if (runParts.indexOf('instructions') > -1) {
   const instrLoopScheduler = new Scheduler(psychoJS)
-  flowScheduler.add(instr.init)
+  flowScheduler.add(instr.init, mainInstructions.generateInstructions)
   flowScheduler.add(instr.loopBegin, instrLoopScheduler)
   flowScheduler.add(instrLoopScheduler)
 }

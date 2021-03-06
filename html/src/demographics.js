@@ -48,6 +48,7 @@ export function demographicLoopBegin (thisScheduler) {
 }
 
 var questionnaireVisuals
+var questionnaireText
 export function prepareQuestionnaireVisuals () {
   let commonQuestionProperties = {
     win: psychoJS.window,
@@ -102,6 +103,19 @@ export function prepareQuestionnaireVisuals () {
     }
   }
 
+  questionnaireText = new visual.TextBox({
+    name: 'questionnaire_text',
+    win: psychoJS.window,
+    autoLog: true,
+    units: 'norm',
+    width: 0.9,
+    height: 0.15,
+    pos: [0, 0],
+    text: ' ',
+    editable: true,
+    color: new util.Color('black'),
+  })
+
   return Scheduler.Event.NEXT
 }
 
@@ -109,6 +123,7 @@ var resp
 var trialComponents
 var currentTrial
 var nextWordStart
+var lastBox
 function demographicRoutineBegin () {
   // resp = new core.BuilderKeyResponse(psychoJS)
   resp = new core.Mouse({
@@ -130,7 +145,28 @@ function demographicRoutineBegin () {
     questionnaireVisuals[i].text.setAutoDraw(false)
   }
 
-  if (typeof options !== 'undefined') {
+  questionnaireText.setAutoDraw(false)
+  lastBox = questionnaireVisuals.length - 1
+
+  if (typeof dialog !== 'undefined' && dialog) {
+    console.log('This question is a dialog question.')
+    questionnaireText.setText('')
+    questionnaireText.setAutoDraw(true)
+
+    questionnaireVisuals[lastBox].box.setAutoDraw(true)
+    questionnaireVisuals[lastBox].text.setText('Submit and Continue')
+    questionnaireVisuals[lastBox].text.setAutoDraw(true)
+
+    // Get the bounding box of the rectangle in pixels
+    const obj = questionnaireVisuals[lastBox].box
+    const pos_px = util.to_px(obj.pos, 'norm', psychoJS.window)
+    const verts = obj._getVertices_px()
+    questionnaireVisuals[lastBox].boundingBox = obj._vertices_px.map(v => [v[0] + pos_px[0], v[1] + pos_px[1]])
+
+    trialComponents.push(questionnaireText)
+    trialComponents.push(questionnaireVisuals[lastBox].box)
+    trialComponents.push(questionnaireVisuals[lastBox].text)
+  } else if (typeof options !== 'undefined') {
     for (let i = 0; i < options.length; i++) {
       questionnaireVisuals[i].box.setAutoDraw(true)
       questionnaireVisuals[i].text.setText(options[i])
@@ -145,6 +181,8 @@ function demographicRoutineBegin () {
       trialComponents.push(questionnaireVisuals[i].box)
       trialComponents.push(questionnaireVisuals[i].text)
     }
+  } else {
+    console.log('Neither question option worked!')
   }
 
   for (const thisComponent of trialComponents) {
@@ -191,7 +229,8 @@ function demographicRoutineIntroFrames () {
   lastClick = null
 
   respEntry = {
-      option: null,
+    option: null,
+    text: null,
   }
 
   viz.header.status = PsychoJS.Status.NOT_STARTED
@@ -242,18 +281,34 @@ function demographicRoutineEachFrame () {
     }
 
     if (lastClick !== null) {
-      for (var i = 0; i < options.length; i++) {
-        const inBox = util.IsPointInsidePolygon(lastClick, questionnaireVisuals[i].boundingBox)
-        if (inBox) {
-          console.log('Is pressed in: ' + questionnaireVisuals[i].box.name)
+      if (dialog !== true) {
+        for (var i = 0; i < options.length; i++) {
+          const inBox = util.IsPointInsidePolygon(lastClick, questionnaireVisuals[i].boundingBox)
+          if (inBox) {
+            console.log('Is pressed in: ' + questionnaireVisuals[i].box.name)
 
-          respEntry.option = options[i]
+            respEntry.option = options[i]
+
+            hasResponded = true
+            return Scheduler.Event.NEXT
+          }
+        }
+      } else {
+        const inBox = util.IsPointInsidePolygon(lastClick, questionnaireVisuals[lastBox].boundingBox)
+        const respText = questionnaireText.getText()
+
+        if (respText.length === 0) {
+          lastClick = null
+          return Scheduler.Event.FLIP_REPEAT
+        } else if (inBox) {
+          console.log('Resp text: ' + respText)
+
+          respEntry.text = respText
 
           hasResponded = true
+          return Scheduler.Event.NEXT
         }
       }
-
-      return Scheduler.Event.NEXT
     }
 
     if (respKeys.indexOf('escape') > -1) {
@@ -266,9 +321,7 @@ function demographicRoutineEachFrame () {
     return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false)
   }
 
-  if (exp.routineTimer.getTime() > 0) {
-    return Scheduler.Event.FLIP_REPEAT
-  } else if (!hasResponded) {
+  if (!hasResponded) {
     return Scheduler.Event.FLIP_REPEAT
   } else {
     return Scheduler.Event.NEXT
@@ -296,7 +349,7 @@ export function loadQuestions () {
 }
 
 export function demographicLoopEnd () {
-  psychoJS.experiment.nextEntry()
+  // psychoJS.experiment.nextEntry()
   // psychoJS.experiment.removeLoop(trials)
 
   return Scheduler.Event.NEXT

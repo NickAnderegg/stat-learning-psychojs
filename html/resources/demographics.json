@@ -1,6 +1,7 @@
 [
     {
         "question": "What type of headphones did you use for the task?",
+        "dialog": false,
         "options": [
             "In-ear",
             "Over-ear",
@@ -10,6 +11,7 @@
     },
     {
         "question": "Which ear(s) did you use headphones for?",
+        "dialog": false,
         "options": [
             "Left ear only",
             "Right ear only",
@@ -19,6 +21,7 @@
     },
     {
         "question": "What type of computer and mouse are you using?",
+        "dialog": false,
         "options": [
             "Laptop with physical mouse",
             "Laptop with trackpad",
@@ -28,6 +31,7 @@
     },
     {
         "question": "How much time do you spend on practicing a musical instrument?",
+        "dialog": false,
         "options": [
             ">2h/week",
             "<2h/week",
@@ -36,6 +40,7 @@
     },
     {
         "question": "Which hand did you use to respond with during the task you just completed?",
+        "dialog": false,
         "options": [
             "Left",
             "Right",
@@ -44,6 +49,7 @@
     },
     {
         "question": "Which hand do you write with?",
+        "dialog": false,
         "options": [
             "Always Left",
             "Usually Left",
@@ -54,6 +60,7 @@
     },
     {
         "question": "Which hand do you throw with?",
+        "dialog": false,
         "options": [
             "Always Left",
             "Usually Left",
@@ -64,6 +71,7 @@
     },
     {
         "question": "Which hand do you brush your teeth with?",
+        "dialog": false,
         "options": [
             "Always Left",
             "Usually Left",
@@ -74,6 +82,7 @@
     },
     {
         "question": "Which hand do you use to eat with a spoon?",
+        "dialog": false,
         "options": [
             "Always Left",
             "Usually Left",
@@ -88,6 +97,7 @@
     },
     {
         "question": "What is your gender?",
+        "dialog": false,
         "options": [
             "Female",
             "Male",
@@ -96,6 +106,7 @@
     },
     {
         "question": "What is your race?",
+        "dialog": false,
         "options": [
             "American Indian/Alaska Native",
             "Asian",
@@ -108,6 +119,7 @@
     },
     {
         "question": "What is your ethnicity?",
+        "dialog": false,
         "options": [
             "Hispanic or Latino",
             "Not Hispanic or Latino",
@@ -116,6 +128,7 @@
     },
     {
         "question": "Are you a fluent/native English speaker?",
+        "dialog": false,
         "options": [
             "Yes",
             "No"
@@ -123,6 +136,7 @@
     },
     {
         "question": "Did you learn English before the age 5?",
+        "dialog": false,
         "options": [
             "Yes",
             "No"
@@ -130,6 +144,7 @@
     },
     {
         "question": "Are your parents/guardians native speakers of English?",
+        "dialog": false,
         "options": [
             "Yes, at least one",
             "No, none were native speakers of English"
@@ -149,6 +164,7 @@
     },
     {
         "question": "Do you have a history of a speech, language, or hearing impairment?",
+        "dialog": false,
         "options": [
             "Yes",
             "No"
@@ -156,6 +172,7 @@
     },
     {
         "question": "Have you ever been diagnosed with a language-related learning disability, for example dyslexia or Specific Language Impairment (SLI)?",
+        "dialog": false,
         "options": [
             "Yes",
             "Yes, and it is Specific Language Impairment (SLI)",
@@ -164,6 +181,7 @@
     },
     {
         "question": "What is the highest grade or level of school you have completed or the highest degree you have received?",
+        "dialog": false,
         "options": [
             "5th Grade or below",
             "6th Grade",

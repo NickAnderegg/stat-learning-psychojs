@@ -134,7 +134,8 @@ export function routineFrame () {
     // instrText.tStart = t // (not accounting for frame time here)
     // instrText.frameNStart = frameN // exact frame index
     instrText.setAutoDraw(true)
-    instrContinue.setAutoDraw(false)
+    instrContinue.setAutoDraw(true)
+    instrContinue.setText('Please wait...')
 
     instructionLength = (instrBody.split(' ')).length
     continuationDelayMs = 250 * instructionLength
@@ -143,6 +144,7 @@ export function routineFrame () {
 
   if (exp.keyboardHandler.status === PsychoJS.Status.NOT_STARTED && !exp.isWaiting()) {
     exp.keyboardHandler.status = PsychoJS.Status.STARTED
+    instrContinue.setText('Press SPACE key to continue...')
     instrContinue.setAutoDraw(true)
   }
 

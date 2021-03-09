@@ -281,7 +281,7 @@ function demographicRoutineEachFrame () {
     }
 
     if (lastClick !== null) {
-      if (dialog !== true) {
+      if (!dialog) {
         for (var i = 0; i < options.length; i++) {
           const inBox = util.IsPointInsidePolygon(lastClick, questionnaireVisuals[i].boundingBox)
           if (inBox) {
@@ -310,6 +310,8 @@ function demographicRoutineEachFrame () {
         }
       }
     }
+
+    lastClick = null
 
     if (respKeys.indexOf('escape') > -1) {
       psychoJS.experiment.experimentEnded = true

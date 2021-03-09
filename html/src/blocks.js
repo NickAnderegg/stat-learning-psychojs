@@ -77,6 +77,9 @@ function loadBlocksList () {
   const blocksListJSON = loadCsvFile('loops.csv')
 
   for (const val of Object.values(blocksListJSON)) {
+    // if (blocksList.length >= 2) {
+    //   break
+    // }
     const blockObject = new Map()
 
     blockObject.blockName = val.block_order.split('.')[0]

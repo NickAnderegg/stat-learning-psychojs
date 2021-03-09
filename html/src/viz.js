@@ -84,7 +84,7 @@ const stimDefinitions = {
     height: 0.1,
     pos: [0.33, 0],
     wrapWidth: 0.5,
-    text: 'Press the left arrow to choose Group 2\n\n→',
+    text: 'Press the right arrow to choose Group 2\n\n→',
   }
 }
 

@@ -435,6 +435,7 @@ function restRoutineEachFrame () {
   if (continueRoutine && exp.restTimer.getTime() > 0) {
     return Scheduler.Event.FLIP_REPEAT
   } else {
+    viz.restText.setAutoDraw(false)
     return Scheduler.Event.NEXT
   }
 }
@@ -465,6 +466,7 @@ function trialRoutineEnd () {
 
 export function trialLoopEnd () {
   psychoJS.experiment.nextEntry()
+  exp.releaseConditions()
   // psychoJS.experiment.removeLoop(trials)
 
   return Scheduler.Event.NEXT
@@ -476,6 +478,7 @@ function endLoopIteration (thisTrial) {
     // if (typeof thisTrial === 'undefined' || !('isTrials' in thisTrial) || thisTrial.isTrials) {
     //   psychoJS.experiment.nextEntry()
     // }
+    // exp.releaseConditions()
     return Scheduler.Event.NEXT
   }
 }

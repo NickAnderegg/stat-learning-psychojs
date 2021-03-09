@@ -83,14 +83,33 @@ export function setBackgroundColor (bgColor) {
   psychoJS.window._fullRefresh()
 }
 
+export var importedAttributes
 export function importConditions (loop) {
   const trialIndex = loop.getTrialIndex()
+  importedAttributes = loop.getAttributes()
+
+  // console.log('Imported attributes')
+  // console.log(importedAttributes)
 
   return function () {
     loop.setTrialIndex(trialIndex)
     psychoJS.importAttributes(loop.getCurrentTrial())
 
     return Scheduler.Event.NEXT
+  }
+}
+
+export function releaseConditions () {
+  for (var i = 0; i < importedAttributes.length; i++) {
+    window[importedAttributes[i]] = null
+    delete window[importedAttributes[i]]
+  }
+}
+
+export function releaseAttributes (lst) {
+  for (var i = 0; i < lst.length; i++) {
+    window[lst[i]] = null
+    delete window[lst[i]]
   }
 }
 

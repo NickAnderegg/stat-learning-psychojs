@@ -286,11 +286,11 @@ function trialRoutineEachFrame () {
       currentSentence = trialSentences.shift()
     } else {
       // return Scheduler.Event.NEXT
-      if (blockHandler.thisTrialN >= 2) {
-        return quitPsychoJS('Finished loop', true)
-      } else {
-        return Scheduler.Event.NEXT
-      }
+      // if (blockHandler.thisIndex >= 1) {
+      //   return quitPsychoJS('Finished loop', true)
+      // } else {
+      return Scheduler.Event.NEXT
+      // }
     }
   }
 

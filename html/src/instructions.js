@@ -286,6 +286,7 @@ export function routineEnd () {
   // }
 
   exp.keyboardHandler.stop()
+  exp.releaseConditions()
   // the Routine "Instructions" was not non-slip safe, so reset the non-slip timer
   // exp.routineTimer.reset()
 

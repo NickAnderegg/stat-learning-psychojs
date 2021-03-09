@@ -351,6 +351,7 @@ export function loadQuestions () {
 export function demographicLoopEnd () {
   // psychoJS.experiment.nextEntry()
   // psychoJS.experiment.removeLoop(trials)
+  exp.releaseConditions()
 
   return Scheduler.Event.NEXT
 }

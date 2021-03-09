@@ -347,12 +347,15 @@ function processSeq (seq) {
 export function comprehensionLoopEnd () {
   psychoJS.experiment.nextEntry()
   // psychoJS.experiment.removeLoop(trials)
+  exp.releaseConditions()
+  exp.releaseAttributes(['target_position', 'targetText', 'distractorText'])
 
   return Scheduler.Event.NEXT
 }
 
 function endLoopIteration (thisTrial) {
   // ------Prepare for next entry------
+  exp.releaseConditions()
   return function () {
     // if (typeof thisTrial === 'undefined' || !('isTrials' in thisTrial) || thisTrial.isTrials) {
     //   psychoJS.experiment.nextEntry()

@@ -132,6 +132,8 @@ function demographicRoutineBegin () {
     autoLog: true,
   })
 
+  resp.clickReset()
+
   viz.header.setText(question)
   viz.header.setAutoDraw(true)
 
@@ -227,6 +229,7 @@ function demographicRoutineIntroFrames () {
   exp.routineTimer.reset(5)
   frameN = -1
   lastClick = null
+  resp.clickReset()
 
   respEntry = {
     option: null,
@@ -271,13 +274,15 @@ function demographicRoutineEachFrame () {
     // console.log(resp)
     // return quitPsychoJS('Quitting', false)
 
-    let respPressed = resp.getPressed()
+    let respPressed = resp.getPressed(true)
 
-    if (respPressed[0] !== 0) {
+    if (respPressed[1][0] !== 0) {
       // console.log(respPressed)
 
       // Convert the click location to pixel position on screen
       lastClick = util.to_px(resp.getPos(), resp.getUnits(), psychoJS.window)
+      console.log(respPressed)
+      console.log(resp.getPos())
     }
 
     if (lastClick !== null) {
@@ -293,25 +298,36 @@ function demographicRoutineEachFrame () {
             return Scheduler.Event.NEXT
           }
         }
+        resp.clickReset()
       } else {
         const inBox = util.IsPointInsidePolygon(lastClick, questionnaireVisuals[lastBox].boundingBox)
         const respText = questionnaireText.getText()
 
         if (respText.length === 0) {
           lastClick = null
+          // respPressed = [0, 0, 0]
+          resp.clickReset()
           return Scheduler.Event.FLIP_REPEAT
         } else if (inBox) {
           console.log('Resp text: ' + respText)
+          console.log(respPressed)
+          console.log([resp, resp.getPos()])
 
           respEntry.text = respText
 
           hasResponded = true
+          resp.clickReset()
           return Scheduler.Event.NEXT
+        } else {
+          resp.clickReset()
         }
       }
+    } else {
+      resp.clickReset()
     }
 
-    lastClick = null
+    lastClick = [-10000, -10000]
+    // resp.clickReset()
 
     if (respKeys.indexOf('escape') > -1) {
       psychoJS.experiment.experimentEnded = true

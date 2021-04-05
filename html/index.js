@@ -77,7 +77,7 @@ export const psychoJS = new PsychoJS({
  * Open an experiment window.
  */
 psychoJS.openWindow({
-  // fullscr: true,
+  fullscr: true,
   color: new util.Color('white'),
   units: 'height',
   waitBlanking: true

@@ -60,8 +60,8 @@ const runParts = [
   //'instructions',
   //'audioTest',
   //'task',
-  //'comprehension',
-  'demographics',
+  'comprehension',
+  //'demographics',
 ]
 
 /**

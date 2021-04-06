@@ -57,10 +57,10 @@ import * as demographicInstructions from './src/demographicInstructionText.js'
 const psychoJSVersion = '2021.1.0'
 
 const runParts = [
-  'instructions',
-  'audioTest',
-  'task',
-  'comprehension',
+  //'instructions',
+  //'audioTest',
+  //'task',
+  //'comprehension',
   'demographics',
 ]
 

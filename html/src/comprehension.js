@@ -19,7 +19,7 @@ export function comprehensionLoopBegin (thisScheduler) {
   comprehensionHandler = new TrialHandler({
     psychoJS: psychoJS,
     nReps: 1,
-    method: TrialHandler.Method.SEQUENTIAL,
+    method: TrialHandler.Method.RANDOM,
     extraInfo: sessionInfo,
     originPath: undefined,
     trialList: choiceTrialList,

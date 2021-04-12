@@ -12,7 +12,7 @@ import * as exp from './experimentUtils.js'
 import * as blocks from './blocks.js'
 
 // The duration of the pause between the left and right stimulus in SECONDS.
-const SEPARATION_DURATION = 1
+export const SEPARATION_DURATION = 5
 
 var t
 var frameN

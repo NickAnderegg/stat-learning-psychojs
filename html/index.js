@@ -304,7 +304,7 @@ if (runParts.indexOf('comprehension') > -1) {
   // flowScheduler.add(console.log, 'Testing the flow scheduler...')
   flowScheduler.add(comprehension.comprehensionLoopBegin, comprehensionLoopScheduler)
   flowScheduler.add(comprehensionLoopScheduler)
-  flowScheduler.add(comprehension.comprehensionLoopEnd)
+  // flowScheduler.add(comprehension.comprehensionLoopEnd)
 }
 
 if (runParts.indexOf('demographics') > -1) {

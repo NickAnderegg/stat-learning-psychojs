@@ -11,6 +11,9 @@ import * as exp from './experimentUtils.js'
 // import * as viz from './viz.js'
 import * as blocks from './blocks.js'
 
+// The duration of the pause between the left and right stimulus
+const SEPARATION_DURATION = 1
+
 var t
 var frameN
 var comprehensionHandler
@@ -239,7 +242,7 @@ function computeOnsets (leftFragment, rightFragment) {
     console.log(seq[seq.length - 1].stim)
   }
 
-  const rightFragmentZero = seq[seq.length - 1].onset + seq[seq.length - 1].stim.getDuration() + 1
+  const rightFragmentZero = seq[seq.length - 1].onset + seq[seq.length - 1].stim.getDuration() + SEPARATION_DURATION
 
   for (const w of rightFragment) {
     const seqEntry = Object.create({})

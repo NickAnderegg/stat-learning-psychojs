@@ -11,7 +11,7 @@ import * as exp from './experimentUtils.js'
 // import * as viz from './viz.js'
 import * as blocks from './blocks.js'
 
-// The duration of the pause between the left and right stimulus
+// The duration of the pause between the left and right stimulus in SECONDS.
 const SEPARATION_DURATION = 1
 
 var t
@@ -150,7 +150,7 @@ function comprehensionRoutineEachFrame () {
     viz.group2Text.setAutoDraw(true)
   }
 
-  if (resp.status === PsychoJS.Status.NOT_STARTED && t >= 0) {
+  if (resp.status === PsychoJS.Status.NOT_STARTED && exp.routineTimer.getTime() <= 0) {
     resp.tStart = t
     resp.frameNStart = frameN
     resp.status = PsychoJS.Status.STARTED
